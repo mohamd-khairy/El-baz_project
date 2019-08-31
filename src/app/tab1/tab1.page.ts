@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsServiceService } from '../news-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -8,14 +9,31 @@ import { NewsServiceService } from '../news-service.service';
 })
 export class Tab1Page implements OnInit {
 
-  data:any;
-  constructor(private NewsServiceService: NewsServiceService) { }
+  data: any;
+  page= 1;
+
+  constructor(private NewsServiceService: NewsServiceService, private router: Router) { }
 
   ngOnInit() {
-    this.NewsServiceService.getData("top-headlines?country=eg&category=sports")
-      .subscribe(data => { 
-      this.data=data.json().articles;
+    this.NewsServiceService.getData(`top-headlines?country=eg&category=sports&pageSize=5&page=${this.page}`)
+      .subscribe(data => {
+        this.data = data.json().articles;
       });
-
   }
+  currentArticle(article) {
+    this.NewsServiceService.currentArticle = article;
+    this.router.navigate(['/currentnews']);
+  }
+
+  loadData(event) {
+   this.page++;
+    this.NewsServiceService.getData(`top-headlines?country=eg&category=sports&pageSize=5&page=${this.page}`)
+      .subscribe(data => {
+        for (const article of data.json().articles) {
+          this.data.push(article);
+        }
+        event.target.complete();
+      });
+  }
+
 }

@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>currentnews</ion-title>
+    <ion-title>{{current_data.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-img src="{{current_data.urlToImage}}"></ion-img>
 
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-card-title>{{current_data.title}}</ion-card-title>
+      {{current_data.description}}
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+            <h6> {{current_data.publishedAt  | date: "dd/MM/yyyy hh:mm a"}}</h6>
+          </ion-col>
+          <ion-col>
+            <h6> {{current_data.source.name}}</h6>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

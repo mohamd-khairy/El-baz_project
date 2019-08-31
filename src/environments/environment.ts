@@ -5,7 +5,10 @@
 export const environment = {
   production: false,
   Api_Url:'https://newsapi.org/v2',
-  Api_key:"634e266eba944ebba1951d7d28539900"
+  Api_key:"634e266eba944ebba1951d7d28539900",
+  Api_key_liveScore:"89Sk2bBGObnoezD8",
+  Api_secret_LiveScore:"XTJsdHp5sZOkHwYQFRbI2MoRXMfclSkj",
+  Api_Url_LiveScore:"https://livescore-api.com/api-client"
 };
 
 /*
